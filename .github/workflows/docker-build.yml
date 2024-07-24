@@ -49,9 +49,9 @@ jobs:
                 context: .
                 push: true
                 tags: ghcr.io/${{ github.repository_owner }}/f5xc-frpc:latest, ghcr.io/${{ github.repository_owner }}/f5xc-frpc:${{ steps.new_version.outputs.new_version }}
-              
-            - name: Create new tag
-              run: git tag -a ${{ steps.new_version.outputs.new_version }}
 
-            - name: Push new tag
-              run: git push origin ${{ steps.new_version.outputs.new_version }}
+            - name: Bump the version
+              uses: laputansoft/github-tag-action@v4.6
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                tag: ${{ steps.new_version.outputs.new_version }}
