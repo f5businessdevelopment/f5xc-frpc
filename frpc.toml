@@ -1,0 +1,14 @@
+serverAddr = "{{ .Envs.FRP_SERVER_ADDR }}" # the domain name exposed by the XC TCP LB
+serverPort = {{ .Envs.FRP_SERVER_PORT }} # the port exposed by the TCP LB in XC
+transport.tls.enable = true # set to the default value
+log.level = "trace" # this can be set to debug info or warning
+log.to = "console" # if this is anything other than 'console' docker compose will not attach to the output
+auth.method = "token"
+auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}"
+
+[[proxies]]
+name = "{{ .Envs.FRP_PROXY_NAME }}"
+type = "http" 
+localIP = "{{ .Envs.FRP_APP_ADDR }}" # this is the name of the docker compose service
+localPort = {{ .Envs.FRP_APP_PORT }} # this is the port exposed by the container NOT the host port exposed by docker
+customDomains = ["{{ .Envs.FRP_PROXY_DOMAIN }}"] # this is the service name and namespace in XC
