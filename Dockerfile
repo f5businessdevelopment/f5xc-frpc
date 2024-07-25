@@ -1,8 +1,8 @@
 FROM amd64/alpine:3.20
 
-LABEL maintainer="mjmenger <mark@f2a.io>"
+LABEL maintainer="Mark Menger <m.menger@f5.com>"
 
-ENV FRP_VERSION=0.58.1
+ENV FRP_VERSION=0.59.0
 
 RUN cd /root \
     &&  wget --no-check-certificate -c https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz \
